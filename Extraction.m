@@ -1,9 +1,9 @@
 clear;
 % parameters
+P     = 15;                      % power of insertion
 N     = 10;                      % crop N% from each side
-% R     = 50;                      % radius of inscribed circle
-path  = 'lena-color_coded.bmp';  % path to image with stego
 key   = 2014;                    % numerical key for pseudo-random generator
+path  = 'coded.bmp';             % path to image with stego
 wname = 'db1';                   % wavelet name
 
 % coeficients
@@ -11,7 +11,6 @@ u1 = 5;
 u2 = 4;
 v1 = 4;
 v2 = 5;
-P = 50;
 
 %% extraction
 RGB = imread(path);
@@ -24,11 +23,6 @@ workwith = CB;
 % cut N% from each side
 workwith = workwith(floor(size(workwith,1)*(N/100)) + double(N==0) : floor(size(workwith,1)*(100-N)/100), ...
                     floor(size(workwith,2)*(N/100)) + double(N==0) : floor(size(workwith,2)*(100-N)/100));
-
-% TODO:
-% extract keypoints and detect transformations
-% Y = InsertPoints(Y, R);
-% workwith = InsertTrapeze(workwith, R);
 
 % discrete wavelet transform 
 [DWT.cA, DWT.cH, DWT.cV, DWT.cD] = dwt2(workwith,wname);

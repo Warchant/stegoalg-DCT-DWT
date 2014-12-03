@@ -1,14 +1,12 @@
-function [chr] = Insertion(P,S)
 % parameters
-% S = [128 128];                    % input image will be resized to S
-% P = 5;                           % power of insertion
+P     = 15;                       % power of insertion
 N     = 10;                       % crop N% from each side
-% R     = 25;                       % radius of inscribed circle
 key   = 2014;                     % key for pseudo-random generator
 wname = 'db1';                    % wavelet name
 inppath  = 'lena-color.bmp';      % input image path
 outpath  = 'coded.bmp';           % output image path
-message.text = '000000000000000000000000000000000000000000000000000000000000000000000000000000';
+message.text = 'hello world, my name is Bogdan, here is my hidden message!';
+
 % coeficients
 u1 = 5;
 u2 = 4;
@@ -18,7 +16,6 @@ v2 = 5;
 %% image preprocessing
 % read image
 RGB = imread(inppath);
-RGB = imresize(RGB, S);
 [imrows, imcols, ~]=size(RGB);
 if imrows < 16 || imcols < 16
     error('Rows and cols of the image must be >=16!');
@@ -49,8 +46,6 @@ end
 
 % divide to 8x8. Av_BLOCKS -- blocks, which is available to insertion
 [BLOCKS, Av_BLOCKS] = SplitToBlocks(DWT.cV,8);
-% celldisp(CVBLOCKS); % display blocks
-% cellplot(BLOCKS);   % plot blocks map    <--- show this with 'db10' !!!
 
 % discrete cosine transform of each block
 for i = 1:size(Av_BLOCKS,1)
@@ -62,15 +57,10 @@ end
 % can we insert all message?
 capacity_bit = numel(Av_BLOCKS);
 toinsert_bit = numel(message.bin);
-% if capacity_bit < toinsert_bit
-%     error(['Image capacity:           ' num2str(capacity_bit) ' bit' 10 ...
-%            'You are trying to insert: ' num2str(toinsert_bit) ' bit' 10 ...
-%            'Reduce message length!']);
-% end
-
-% needed to fill container. no need it release
-for i=1:capacity_bit
-    message.bin(i) = '0';
+if capacity_bit < toinsert_bit
+    error(['Image capacity:           ' num2str(capacity_bit) ' bit' 10 ...
+           'You are trying to insert: ' num2str(toinsert_bit) ' bit' 10 ...
+           'Reduce message length!']);
 end
 
 % insertion
@@ -141,7 +131,6 @@ RGB_C = ycbcr2rgb(YCBCR_C);
 
 % save image
 imwrite(RGB_C,outpath);
-% spy(YCBCR(:,:,2) - YCBCR_C(:,:,2));
 
 %% characteristics
 chr.ad  = AD(RGB,RGB_C);

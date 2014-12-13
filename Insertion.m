@@ -84,7 +84,7 @@ for i=1:numel(Av_BLOCKS)
         z2 = -1;
     end
     
-    if i > length(toinsert_bit)
+    if i > toinsert_bit
         break;
     end
     
@@ -131,7 +131,7 @@ RGB_C = ycbcr2rgb(YCBCR_C);
 
 % save image
 imwrite(RGB_C,outpath);
-
+spy(double(YCBCR)-double(YCBCR_C));
 %% characteristics
 chr.ad  = AD(RGB,RGB_C);
 chr.nad = NAD(RGB,RGB_C);

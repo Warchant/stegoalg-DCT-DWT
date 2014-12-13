@@ -1,11 +1,12 @@
+clear
 % parameters
-P     = 15;                       % power of insertion
+P     = 5;                       % power of insertion
 N     = 10;                       % crop N% from each side
 key   = 2014;                     % key for pseudo-random generator
 wname = 'db1';                    % wavelet name
 inppath  = 'lena-color.bmp';      % input image path
 outpath  = 'coded.bmp';           % output image path
-message.text = 'hello world, my name is Bogdan, here is my hidden message!';
+message.text = 'hello world';
 
 % coeficients
 u1 = 5;
@@ -16,6 +17,7 @@ v2 = 5;
 %% image preprocessing
 % read image
 RGB = imread(inppath);
+RGB = imresize(RGB,[128 128]);
 [imrows, imcols, ~]=size(RGB);
 if imrows < 16 || imcols < 16
     error('Rows and cols of the image must be >=16!');
@@ -131,7 +133,7 @@ RGB_C = ycbcr2rgb(YCBCR_C);
 
 % save image
 imwrite(RGB_C,outpath);
-spy(double(YCBCR)-double(YCBCR_C));
+
 %% characteristics
 chr.ad  = AD(RGB,RGB_C);
 chr.nad = NAD(RGB,RGB_C);

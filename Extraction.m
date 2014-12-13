@@ -1,6 +1,6 @@
 clear;
 % parameters
-P     = 15;                      % power of insertion
+%P     = 50;                      % power of insertion
 N     = 10;                      % crop N% from each side
 key   = 2014;                    % numerical key for pseudo-random generator
 path  = 'coded.bmp';             % path to image with stego
@@ -14,6 +14,7 @@ v2 = 5;
 
 %% extraction
 RGB = imread(path);
+RGB = imresize(RGB, [S S]);
 YCBCR = rgb2ycbcr(RGB);
 Y  = YCBCR(:,:,1);
 CB = YCBCR(:,:,2);

@@ -1,9 +1,9 @@
 clear;
-xfile = 'long_MAXSIZE_diff_size_chrstcs.xlsx';
+xfile = '2_MAXSIZE_diff_size_chrstcs.xlsx';
 S = [128 256 512 1024 2048];
 P = [50 30 10 5];
 M = cell(7,1 + numel(S) + numel(P));
-format long
+% format long
 for s = 1:numel(S)
 
     for p = 1:numel(P)

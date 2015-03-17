@@ -17,7 +17,6 @@ v2 = 5;
 %% image preprocessing
 % read image
 RGB = imread(inppath);
-RGB = imresize(RGB,[128 128]);
 [imrows, imcols, ~]=size(RGB);
 if imrows < 16 || imcols < 16
     error('Rows and cols of the image must be >=16!');

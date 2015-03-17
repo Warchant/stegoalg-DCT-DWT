@@ -1,6 +1,5 @@
 clear;
 % parameters
-%P     = 50;                      % power of insertion
 N     = 10;                      % crop N% from each side
 key   = 2014;                    % numerical key for pseudo-random generator
 path  = 'coded.bmp';             % path to image with stego

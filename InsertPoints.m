@@ -1,5 +1,6 @@
 function [RGB] = InsertPoints(RGB, R)
 %% RGB = InsertPoints(RGB, R);
+% This file does not work. Right now I have no idea how to insert points and detect them.
 % Insert in center of INP matrix trapeze with an inscribed circle of radius R.
 %    _a_    |                   Points:   1___2
 %   /   \   | height = 2R                / 5.  \

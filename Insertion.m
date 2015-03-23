@@ -1,12 +1,12 @@
 clear
 % parameters
-P     = 5;                       % power of insertion
+P     = 50;                       % power of insertion
 N     = 10;                       % crop N% from each side
 key   = 2014;                     % key for pseudo-random generator
 wname = 'db1';                    % wavelet name
 inppath  = 'lena-color.bmp';      % input image path
 outpath  = 'coded.bmp';           % output image path
-message.text = 'hello world';
+message.text = '1234567890987654321234567890987654321';
 
 % coeficients
 u1 = 5;

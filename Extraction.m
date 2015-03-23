@@ -13,7 +13,6 @@ v2 = 5;
 
 %% extraction
 RGB = imread(path);
-RGB = imresize(RGB, [S S]);
 YCBCR = rgb2ycbcr(RGB);
 Y  = YCBCR(:,:,1);
 CB = YCBCR(:,:,2);
